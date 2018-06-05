@@ -1,0 +1,81 @@
+﻿@model DisplayProfileViewModel
+@{
+    ViewData["Title"] = "Моят профил";
+}
+
+<section class='section'>
+    <div class="col-sm-5"></div>
+    <div class="col-sm-4">
+        <h4>@ViewData["Title"]</h4>
+    </div>
+    <div class="col-sm-3"></div>
+    <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+            <div class="col-sm-12 spaceBellow">
+                <div class="col-sm-4">Имеил:</div>
+                <div class="col-sm-8">@Model.Email</div>
+            </div>
+            <div class="col-sm-12 spaceBellow">
+                <div class="col-sm-4">Име:</div>
+                <div class="col-sm-8">@Model.FirstName</div>
+            </div>
+            <div class="col-sm-12 spaceBellow">
+                <div class="col-sm-4">Фамилия:</div>
+                <div class="col-sm-8">@Model.LastName</div>
+            </div>
+            <div class="col-sm-12 spaceBellow">
+                <div class="col-sm-4">Моб. телефон:</div>
+                <div class="col-sm-8">@Model.MobilePhone</div>
+            </div>
+            <div class="col-sm-12 spaceBellow">
+                <div class="col-sm-4">Адрес:</div>
+                <div class="col-sm-8">@Model.Address</div>
+            </div>
+            <div class="col-sm-12 spaceBellow">
+                <div class="col-sm-4">Роля:</div>
+                <div class="col-sm-8">@Model.Role</div>
+            </div>
+            <div class="col-sm-12 spaceBellow">
+                <div class="col-sm-4">Активен:</div>
+                <div class="col-sm-8">@((Model.Active == 0) ? "Не" : "Да")</div>
+            </div>
+            <div class="col-sm-12 m-md-top">
+                <div class="col-sm-12">Информация за запис</div>
+            </div>
+            <div class="col-sm-12 spaceBellow">
+                <div class="col-sm-4">Създаден на:</div>
+                <div class="col-sm-8">@Model.Created_At.ToString()</div>
+            </div>
+        </div>
+        <div class="col-sm-4"></div>
+        <br />
+
+        <div class="col-sm-12 m-md-top">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
+                @if (@Model.Role == "Admin" || Model.Role == "Teacher")
+                {
+                    <div class="btn-group-md">
+                        <a id="NewStudent" class="addNew btn btn-success btn-md active" asp-area="" asp-controller="Student" asp-action="Create">Нов ученик</a>
+                        <a class="listBtn btn btn-primary btn-md active" asp-area="" asp-controller="Student" asp-action="List">Управление на ученици</a>
+                    </div>
+                    <br />
+                    <br />
+                    <div class="btn-group-md">
+                        <a class="addNew btn btn-success btn-md active" asp-area="" asp-controller="Course" asp-action="Create">Нов предмет</a>
+                        <a class="listBtn btn btn-primary btn-md active" asp-area="" asp-controller="Course" asp-action="List">Управление на предмети</a>
+                    </div>
+                }
+
+                @if (@Model.Role == "Student")
+                {
+                    <div class="btn-group-md">
+                        <a style="width: 100%;" class="btn btn-success btn-md active" asp-area="" asp-controller="Profile" asp-action="ExamResults">Резултати от изпити</a>
+                    </div>
+                  }
+            </div>
+            <div class="col-sm-4"></div>
+        </div>
+     </div>
+</section>

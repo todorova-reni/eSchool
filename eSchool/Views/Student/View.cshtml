@@ -1,0 +1,66 @@
+﻿@model ViewStudentViewModel
+@{
+    ViewData["Title"] = "Преглед на ученик";
+}
+
+<section class='section'>
+    <div class="col-sm-5"></div>
+    <div class="col-sm-4">
+        <h4>@ViewData["Title"]</h4>
+    </div>
+    <div class="col-sm-3"></div>
+    <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+            <div class="col-sm-12 spaceBellow">
+                <div class="col-sm-4">Име:</div>
+                <div class="col-sm-8">@Model.FirstName</div>
+            </div>
+            <div class="col-sm-12 spaceBellow">
+                <div class="col-sm-4">Фамилия:</div>
+                <div class="col-sm-8">@Model.LastName</div>
+            </div>
+            <div class="col-sm-12 spaceBellow">
+                <div class="col-sm-4">Клас:</div>
+                <div class="col-sm-8">@Model.Class_id</div>
+            </div>
+            <div class="col-sm-12 spaceBellow">
+                <div class="col-sm-4">Имейл на ученик:</div>
+                <div class="col-sm-8">@Model.Stud_Email</div>
+            </div>
+            <div class="col-sm-12 spaceBellow">
+                <div class="col-sm-4">Имейл на родител:</div>
+                <div class="col-sm-8">@Model.Parent_Email</div>
+            </div>
+            <div class="col-sm-12 spaceBellow">
+                <div class="col-sm-4">Активен:</div>
+                <div class="col-sm-8">@((Model.Active == 0) ? "Не" : "Да")</div>
+            </div>
+            <div class="col-sm-12 m-md-top">
+                <div class="col-sm-12">Информация за запис</div>
+            </div>
+            <div class="col-sm-12 spaceBellow">
+                <div class="col-sm-4">Създаден на:</div>
+                <div class="col-sm-8">@Model.Created_At.ToString()</div>
+            </div>
+            @if (Model.Updated_By != null)
+            {
+                <div class="col-sm-12 spaceBellow">
+                    <div class="col-sm-4">Променен от:</div>
+                    <div class="col-sm-8"> @Model.Updated_By.ToString()</div>
+                </div>
+            }
+
+            <div class="col-sm-12">
+                <a id="ExamRes"
+                   style="width: 100%;"
+                   class="btn btn-warning m-md-top"
+                   href="@Url.Action("List", "ExamResult", new {
+                                            studId = Model.Id,
+                                            studName = Model.FirstName + " " + Model.LastName
+            })">Резултати от изпити</a>
+
+            </div>
+        </div>
+    </div>
+</section>

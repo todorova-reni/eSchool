@@ -1,0 +1,140 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using eSchool.Models
+
+@inject SignInManager<ApplicationUser> SignInManager
+
+@{
+    ViewData["Title"] = "Начало";
+}
+
+<section class='gallery'>
+    <div class="home-caption">
+        <div class="home-title">Бъдете в час с вашето дете.</div>
+        <div class="home-subtitle">Тук ще откиете информация за развитието на вашето дете в училище.</div>
+        @if (SignInManager.IsSignedIn(User))
+        {
+            <a asp-area="" asp-controller="Profile" asp-action="Display" class="btn btn-lg downloadbtn">Моят профил</a>
+        }
+        else
+        {
+            <a asp-area="" asp-controller="Account" asp-action="Login" class="btn btn-lg downloadbtn">Да започваме.</a>
+        }
+    </div>
+</section>
+
+<!-- /GALLERY ENDS HERE -->
+<!-- OPTION STARTS HERE-->
+<section class='shym-option'>
+    <div class='container'>
+        <div class="row">
+            <div class="col-sm-4 shym-option-container">
+                <span data-scroll-reveal="wait 0.25s, then enter top and move 40px over 1s"><i class="fa fa-camera"></i></span>
+                <h3 class="shym-text-uppercase"> Stylish Pictures</h3>
+                <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia</p>
+                <a href="#" title="">Read More</a>
+            </div>
+
+            <div class="col-sm-4  shym-option-container">
+                <span data-scroll-reveal="wait 0.25s, then enter top and move 40px over 1s"><i class="fa fa-dashboard"></i></span>
+                <h3 class="shym-text-uppercase">Magnificent Colors</h3>
+                <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia</p>
+                <a href="#" title="">Read More</a>
+            </div>
+
+            <div class="col-sm-4  shym-option-container">
+                <span data-scroll-reveal="wait 0.25s, then enter top and move 40px over 1s"><i class="fa fa-eye"></i></span>
+                <h3 class="shym-text-uppercase">Retina Ready</h3>
+                <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia</p>
+                <a href="#" title="">Read More</a>
+            </div>
+        </div>
+        <!-- /COLUMNS -->
+    </div>
+</section>
+<!-- /OPTION ENDS HERE -->
+
+<!--PICTURE INFORATION -->
+<section class='picture-information'>
+    <div class='container'>
+        <div class='row'>
+            <div class='col-md-12 shym-text-center'>
+                <h3 class='shym-text-uppercase'>Последни новини</h3>
+            </div>
+
+            <div class='gap'>
+            </div>
+            <div class='col-md-12 col-sm-12 col-xs-12'>
+                <div class='col-sm-3 '>
+                    <div class='picture-info' data-scroll-reveal="wait 0.25s, then enter right and move 40px over 1s">
+                        <img src='~/images/education1.jpg' />
+                        <p>There are many variations of passages of Lorem Ipsum available, but the majority.There are many variations of passages of Lorem Ipsum available</p>
+                        <div class="shym-overlay">
+                            <div class="shym-picture-detail-inner">
+                                <h3><a href="#">Business theme</a> </h3>
+                                <p>There are many variations of passages of Lorem Ipsum available,There are many variations of passages of Lorem Ipsum available but the majority</p>
+                                <a href="#" rel="prettyPhoto"><i class="fa fa-eye"></i> View</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-sm-3 '>
+                    <div class='picture-info' data-scroll-reveal="wait 0.25s, then enter left and move 40px over 1s">
+                        <img src='~/images/education2.jpg' />
+                        <p>There are many variations of passages of Lorem Ipsum available, but the majority.There are many variations of passages of Lorem Ipsum available</p>
+                        <div class="shym-overlay">
+                            <div class="shym-picture-detail-inner">
+                                <h3><a href="#">Business theme</a> </h3>
+                                <p>There are many variations of passages of Lorem Ipsum available.There are many variations of passages of Lorem Ipsum available but the majority</p>
+                                <a href="#" rel="prettyPhoto"><i class="fa fa-eye"></i> View</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-sm-3'>
+                    <div class='picture-info' data-scroll-reveal="wait 0.25s, then enter bottom and move 40px over 1s">
+                        <img src='~/images/education3.png' />
+                        <p>There are many variations of passages of Lorem Ipsum available.There are many variations of passages of Lorem Ipsum available but the majority</p>
+                        <div class="shym-overlay">
+                            <div class="shym-picture-detail-inner">
+                                <h3><a href="#">Business theme</a> </h3>
+                                <p>There are many variations of passages of Lorem Ipsum available, but the majority.There are many variations of passages of Lorem Ipsum available</p>
+                                <a href="#" rel="prettyPhoto"><i class="fa fa-eye"></i> View</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-sm-3'>
+                    <div class='picture-info' data-scroll-reveal="wait 0.25s, then enter top and move 40px over 1s">
+                        <img src='~/images/background.jpg' />
+                        <p>There are many variations of passages of Lorem Ipsum available. There are many variations of passages of Lorem Ipsum available, but the majority</p>
+                        <div class="shym-overlay">
+                            <div class="shym-picture-detail-inner">
+                                <h3><a href="#">Business theme</a> </h3>
+                                <p>There are many variations of passages of Lorem Ipsum available, but the majority</p>
+                                <a href="#" rel="prettyPhoto"><i class="fa fa-eye"></i> View</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--/PICTURE INFORMATION ENDS HERE -->
+<!--QUOTE STARTS HERE -->
+<section class='quote'>
+    <div class='container'>
+        <div class='row'>
+            <div class='col-md-12 col-sm-12 col-xs-12'>
+                <div class='col-sm-10 col-xs-10 pull-left'>
+                    <h3 class='shym-text-left'>Имате нужда от помощ?</h3>
+                    <p class='shym-text-left'>Моля използвайте формата за контакти или се свържете с нас на телефон +0123 456 70 80</p>
+                </div>
+                <div class=' col-sm-2 '>
+                    <a  asp-area="" asp-controller="Home" asp-action="Contact" class="btn btn-warning pull-right" style='margin-top:50px;'>Свържете се с нас</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--/QUOTE ENDS HERE-->

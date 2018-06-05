@@ -1,0 +1,43 @@
+﻿@model CreateCourseViewModel
+@{
+    ViewData["Title"] = "Създаване на предмет";
+}
+
+<section class="section">
+    <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+            <form asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post">
+                <h4>@ViewData["Title"]</h4>
+                <hr />
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Name">Име:</label>
+                    <input asp-for="Name" class="form-control" placeholder="Математика" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Description">Описание:</label>
+                    <textarea asp-for="Description" class="form-control" placeholder="Описание" resize="vertical"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Active">Активно:</label>
+                    <select asp-for="Active" class="form-control" resize="vertical">
+                        <option value="0">Не</option>
+                        <option value="1" selected>Да</option>
+                    </select>
+                    <span asp-validation-for="Active" class="text-danger"></span>
+                </div>
+                <button type="submit" class="btn btn-warning m-md-top">Запазване</button>
+            </form>
+        </div>
+        <div class="col-sm-4"></div>
+    </div>
+</section>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+
+
+}

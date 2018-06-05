@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2036
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eSchool", "eSchool\eSchool.csproj", "{D21E515A-C0C1-49FF-B4FC-506BB7CD7FB9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SeleniumeSchoolTest", "..\SeleniumeSchoolTest\SeleniumeSchoolTest\SeleniumeSchoolTest.csproj", "{346D6981-8B21-448E-87C5-4E52F4AF7502}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D21E515A-C0C1-49FF-B4FC-506BB7CD7FB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D21E515A-C0C1-49FF-B4FC-506BB7CD7FB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D21E515A-C0C1-49FF-B4FC-506BB7CD7FB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D21E515A-C0C1-49FF-B4FC-506BB7CD7FB9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{346D6981-8B21-448E-87C5-4E52F4AF7502}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{346D6981-8B21-448E-87C5-4E52F4AF7502}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{346D6981-8B21-448E-87C5-4E52F4AF7502}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{346D6981-8B21-448E-87C5-4E52F4AF7502}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7DB91AB0-AA5A-47DD-AA2D-DFFCE2D9B9F9}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,63 @@
+﻿@{
+    ViewData["Title"] = "Контакти";
+}
+
+<section class='section'>
+    <div class="col-sm-5"></div>
+    <div class="col-sm-4">
+        <h4>@ViewData["Title"]</h4>
+    </div>
+    <div class="col-sm-3"></div>
+    <div class="row col-sm-12">
+
+        <!--======= CONTACT INFO PART =========-->
+        <div class="con-info">
+            <div class="row">
+                <div class='container'>
+
+                    <div class="row">
+                        <!--======= GET IN TOUCH PART =========-->
+                        <div class="col-md-6 col-sm-6">
+                            <i class="ion-flag"></i>
+                            <h4>Изпратете ни съобщение</h4>
+                            <div id="contact_form">
+                                <form id="contact-form" class="contact-form " accept-charset="utf-8" method="post">
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <label for="name">Име</label>
+                                            <input class="form-control" name="name" type="text" placeholder="Име" required />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="mail">Имейл</label>
+                                            <input class="form-control" name="mail" type="email" placeholder="Имейл" required />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="message">Вашето съобщение</label>
+                                            <textarea class="form-control" name="message" placeholder="Вашето съобщение"></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <input name="submit" type="submit" class="btn btn-warning m-md-top" value="Изпратете ни съобщение" />
+                                        </div>
+                                    </div>
+                                </form>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                        <div class="col-sm-offset-2 col-sm-4">
+                            <!--======= OFFICE ADRESS PART =========-->
+                            <div class="col-sm-12">
+                                <i class="ion-android-location"></i>
+                                <h4>Адрес</h4>
+                                <p> бул. България 235</p>
+                                <p> 4000 Пловдив, България</p>
+                                <p>+1 (000)-999-0000</p>
+                                <p> support@e-school.com </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

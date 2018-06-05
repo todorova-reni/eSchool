@@ -1,0 +1,46 @@
+﻿@model List<ListExamResultViewModel>
+@{
+    ViewData["Title"] = "Оценки";
+}
+
+<section class="section">
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10">
+            <h2>@ViewData["Title"]</h2>
+            <br />
+            <br />
+            @if (Model == null)
+            {
+                <h1>Няма налични резултати!</h1>
+            }
+            else
+            {
+                <table class="table table-responsive">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Предмет</th>
+                            <th scope="col">Клас</th>
+                            <th scope="col">Създаден на:</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{int i = 0;}
+                        @foreach (var item in Model)
+                        {
+                            i++;
+                            <tr>
+                                <th scope="row">@i</th>
+                                <td>@item.Course_Name</td>
+                                <td>@item.Grade</td>
+                                <td>@item.Created_At</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+        </div>
+        <div class="col-sm-1"></div>
+    </div>
+</section>

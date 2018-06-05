@@ -1,0 +1,70 @@
+﻿@model RegisterViewModel
+@{
+    ViewData["Title"] = "Регистрация";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<section class="section">
+    <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+            <form asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post">
+                <h4>Създай нов акаунт.</h4>
+                <hr />
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Email">Имейл</label>
+                    <input asp-for="Email" class="form-control" placeholder="ivan@abv.bg"/>
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Password">Парола</label>
+                    <input asp-for="Password" class="form-control" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ConfirmPassword">Потвърди парола</label>
+                    <input asp-for="ConfirmPassword" class="form-control" />
+                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="FirstName">Име</label>
+                    <input asp-for="FirstName" class="form-control" placeholder="Иван" />
+                    <span asp-validation-for="FirstName" class="text-danger" ></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="LastName">Фамилия</label>
+                    <input asp-for="LastName" class="form-control" placeholder="Иванов" />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="MobilePhone">Мобилен телефон</label>
+                    <input asp-for="MobilePhone" class="form-control" placeholder="+359 890 123 456" />
+                    <span asp-validation-for="MobilePhone" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Address">Адрес</label>
+                    <input asp-for="Address" class="form-control" placeholder="бул. Иван Вазов 5" />
+                    <span asp-validation-for="Address" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Role">Аз съм</label>
+                    <select asp-for="Role" class="form-control">
+                        <option value="">Моля избери...</option>
+                        <option value="1">Учител</option>
+                        <option value="2">Ученик</option>
+                        <option value="3">Родител</option>
+                    </select>
+                    <span asp-validation-for="Role" class="text-danger"></span>
+                </div>
+                <button id="Submit" type="submit" class="btn btn-warning m-md-top">Регистрирай ме</button>
+            </form>
+        </div>
+        <div class="col-sm-4"></div>
+    </div>
+</section>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

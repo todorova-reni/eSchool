@@ -1,0 +1,57 @@
+﻿@model CreateStudentViewModel
+@{
+    ViewData["Title"] = "Създаване на ученик";
+}
+
+
+<section class="section">
+    <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+            <form asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post">
+                <h4>@ViewData["Title"]</h4>
+                <hr />
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="FirstName">Име:</label>
+                    <input asp-for="FirstName" class="form-control" placeholder="Иван" />
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="LastName">Фамилия:</label>
+                    <input asp-for="LastName" class="form-control" placeholder="Иванов" />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Stud_Email">Имейл на ученика:</label>
+                    <input asp-for="Stud_Email" class="form-control" placeholder="ivanov93@abv.bg" />
+                    <span asp-validation-for="Stud_Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Parent_Email">Имейл на родител:</label>
+                    <input asp-for="Parent_Email" class="form-control" placeholder="ivanov54@abv.bg" />
+                    <span asp-validation-for="Parent_Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Class_Id">Клас:</label>
+                    <input asp-for="Class_Id" class="form-control" />
+                    <span asp-validation-for="Class_Id" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Active">Активен:</label>
+                    <select asp-for="Active" class="form-control" resize="vertical">
+                        <option value="0">Не</option>
+                        <option value="1" selected>Да</option>
+                    </select>
+                    <span asp-validation-for="Active" class="text-danger"></span>
+                </div>
+                <button id="Save" type="submit" class="btn btn-warning m-md-top">Запази</button>
+            </form>
+        </div>
+        <div class="col-sm-4"></div>
+    </div>
+ </section>
+
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

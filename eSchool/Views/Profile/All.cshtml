@@ -1,0 +1,47 @@
+﻿
+@model ApplicationUser
+@{
+    ViewData["Title"] = "List Profiles";
+}
+<h2>Списък с профили</h2>
+
+@if (Model == null)
+{
+    <h1>No Profiles Found!</h1>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Име</th>
+                <th scope="col">Имейл</th>
+                <th scope="col">Роля</th>
+                <th scope="col">Активно</th>
+                <th scope="col">Действия</th>
+            </tr>
+        </thead>
+        <tbody>
+            @*@for (int i = 0; i < Model.Count; i++)*@
+            @foreach (var item in Model)
+            { 
+                <tr>
+                    <th scope="row">1</th>
+                    <td>@item.FirstName+" "+@item.LastName</td>
+                    <td>@item.Email</td>
+                    <td>@item.Role</td>
+                    <td>@item.Active</td>
+                    <td>
+                        <a href="@Url.Action("Account", "Activate ", new { id = 1 })">Активиране</a>
+                        <a href="@Url.Action("Account", "Edit", new { id = 1 })">Редактиране</a>
+                        <a href="@Url.Action("Account", "Delete", new { id = 1 })">Изтриване</a>
+                        <a class="btn-success" asp-area="" asp-controller="Profile" asp-action="ListProfiles">Активиране</a>
+                        <a class="btn-warning" asp-area="" asp-controller="Profile" asp-action="ListStudents">Редактиране</a>
+                        <a class="btn-danger" asp-area="" asp-controller="Profile" asp-action="ListParents">Изтриване</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

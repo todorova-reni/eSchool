@@ -1,0 +1,60 @@
+﻿@model List<ListExamResultViewModel>
+@{
+    ViewData["Title"] = "Оценки";
+}
+<section class="section">
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10">
+            <h2>@ViewData["Title"]</h2>
+            <br />
+            <br />
+            Оценки на
+            <a class="linkHover" href="@Url.Action("View", "Student", new { id = @ViewData["studId"] })">@ViewData["studName"]</a>
+
+            <a id="AddRes" class="pull-right addNew btn btn-success btn-md active" href="@Url.Action("Add", "ExamResult", new { studId = @ViewData["studId"], studName = @ViewData["studName"] })">Добавяне на оценка</a>
+
+
+            <br />
+            @if (Model == null)
+            {
+                <h1>Няма резултати!</h1>
+            }
+            else
+            {
+                <table class="table table-responsive m-md-top">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Предмет</th>
+                            <th scope="col">Оценка</th>
+                            <th scope="col">Създадена на</th>
+                            <th scope="col">Действия</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @*@for (int i = 0; i < Model.Count; i++)*@
+                        @{int i = 0;}
+                        @foreach (var item in Model)
+                        {
+                            i++;
+                            <tr>
+                                <th scope="row">@i</th>
+                                <td>@item.Course_Name</td>
+                                <td>@item.Grade</td>
+                                <td>@item.Created_At</td>
+                                <td>
+                                    <a class="linkHover" href="@Url.Action(
+                                "Delete",
+                                "ExamResult",
+                                new { id = item.Id, studId = @ViewData["studId"], studName = @ViewData["studName"] })" onclick="return confirm('Изтриване на оценка?')">Изтриване</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+        </div>
+        <div class="col-sm-1"></div>
+    </div>
+</section>
