@@ -39,7 +39,7 @@
                                 <td>
                                     <a class="linkHover" href="@Url.Action("View", "Student", new { id = item.Id })">@item.FirstName&nbsp;@item.LastName</a>
                                 </td>
-                                <td>@item.Class_Id</td>
+                                <td>@item.Grade_Number&nbsp;@item.Grade_Letter</td>
                                 <td>@item.Parent_Email</td>
                                 <td>@((item.Active == 0) ? "Не" : "Да")</td>
                                 <td>

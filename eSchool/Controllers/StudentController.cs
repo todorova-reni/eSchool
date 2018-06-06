@@ -5,6 +5,7 @@ using eSchool.Models.StudentViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
@@ -46,6 +47,7 @@ namespace eSchool.Controllers
         {
             if (CheckAccess())
             {
+                PopulateGrades();
                 return View();
             } else
             {
@@ -58,6 +60,7 @@ namespace eSchool.Controllers
         {
 
             ViewData["ReturnUrl"] = ReturnUrl;
+            PopulateGrades();
             if (ModelState.IsValid)
             {
                 var userId = this.userManager.GetUserId(this.User);
@@ -128,19 +131,21 @@ namespace eSchool.Controllers
         {
             if (CheckAccess())
             {
-                var model = this.db
-                    .Student
-                    .Select(student => new ListStudentsViewModel
-                    {
-                        Id = student.Id,
-                        FirstName = student.FirstName,
-                        LastName = student.LastName,
-                        Stud_Email = student.Stud_Email,
-                        Parent_Email = student.Parent_Email,
-                        Class_Id = student.Class_Id,
-                        Active = student.Active
 
-                    })
+                var model = (from student in db.Student
+                             join grade in db.Grade on student.Class_Id equals grade.Id
+                             orderby grade.Grade_number, grade.Grade_letter ascending
+                             select new ListStudentsViewModel
+                             {
+                                 Id = student.Id,
+                                 FirstName = student.FirstName,
+                                 LastName = student.LastName,
+                                 Stud_Email = student.Stud_Email,
+                                 Parent_Email = student.Parent_Email,
+                                 Grade_Number = grade.Grade_number,
+                                 Grade_Letter = grade.Grade_letter,
+                                 Active = student.Active
+                             })
                     .ToList();
 
                 if (model == null)
@@ -164,7 +169,7 @@ namespace eSchool.Controllers
                 {
                     return NotFound();
                 }
-
+                PopulateGrades();
                 Student student = db.Student.Find(id);
                 EditStudentViewModel model = new EditStudentViewModel
                 {
@@ -187,6 +192,7 @@ namespace eSchool.Controllers
         public ActionResult Edit(Student student)
         {
             ViewData["ReturnUrl"] = ReturnUrl;
+            PopulateGrades();
             if (ModelState.IsValid)
             {
                 db.Entry(student).State = EntityState.Modified;
@@ -222,6 +228,21 @@ namespace eSchool.Controllers
             {
                 return RedirectToAction("Denied", "Access");
             }
+        }
+
+        private void PopulateGrades(object selectedGrade = null)
+        {
+            var grades = from grade in db.Grade
+                           orderby grade.Grade_number, grade.Grade_letter ascending
+                           select new
+                           {
+                               grade.Id,
+                               GradeName = string.Format("{0} {1}", grade.Grade_number, grade.Grade_letter)
+                           };
+
+            //ViewBag.Teacher_Id = new SelectList(teachers, "Id", "*", selectedTeacher);
+
+            ViewBag.Class_Id = new SelectList(grades, "Id", "GradeName", selectedGrade);
         }
     }
 }

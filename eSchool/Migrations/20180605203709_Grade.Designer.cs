@@ -11,9 +11,10 @@ using System;
 namespace eSchool.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180605203709_Grade")]
+    partial class Grade
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -103,9 +104,11 @@ namespace eSchool.Migrations
                     b.Property<string>("Created_By");
 
                     b.Property<string>("Grade_letter")
-                        .IsRequired();
+                        .IsRequired()
+                        .HasMaxLength(2);
 
-                    b.Property<int>("Grade_number");
+                    b.Property<int>("Grade_number")
+                        .HasMaxLength(2);
 
                     b.Property<string>("Teacher_Id")
                         .IsRequired();

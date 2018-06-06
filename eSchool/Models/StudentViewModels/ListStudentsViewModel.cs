@@ -12,7 +12,9 @@
 
         public string Parent_Email { get; set; }
 
-        public int Class_Id { get; set; }
+        public int Grade_Number { get; set; }
+
+        public string Grade_Letter { get; set; }
 
         public int Active { get; set; }
     }

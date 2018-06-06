@@ -20,6 +20,7 @@ namespace eSchool.Data
         public DbSet<ApplicationUser> ApplicationUser { get; set; }
         public DbSet<Student> Student { get; set; }
         public DbSet<Course> Course { get; set; }
+        public DbSet<Grade> Grade { get; set; }
         public DbSet<ExamResult> ExamResult { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)

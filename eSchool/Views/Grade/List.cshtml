@@ -1,0 +1,58 @@
+﻿@model List<ListGradesViewModel>
+@{
+    ViewData["Title"] = "Клас";
+}
+<section class="section">
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10">
+            <h2>@ViewData["Title"]</h2>
+
+            <a class="btn btn-success btn-md active pull-right" asp-area="" asp-controller="Grade" asp-action="Create">Нов клас</a>
+            <br />
+            <br />
+            @if (Model == null)
+            {
+                <h1>Не са намерени записи</h1>
+            }
+            else
+            {
+                <table class="table table-responsive">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Клас</th>
+                            <th scope="col">Класен ръководител</th>
+                            <th scope="col">Активно</th>
+                            <th scope="col">Действия</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{int i = 0;}
+                        @foreach (var item in Model)
+                        {
+                            i++;
+                        <tr>
+                            <th scope="row">@i</th>
+                            <td>@item.Grade_number&nbsp;@item.Grade_letter</td>
+                            <td>@item.Teacher_FName&nbsp;@item.Teacher_LName</td>
+                            <td>@((item.Active == 0) ? "Не" : "Да")</td>
+                            <td>
+                                <a class="linkHover" href="@Url.Action("View", "Grade", new { id = item.Id })">Преглед</a>
+                                &nbsp;|&nbsp;
+                                <a class="linkHover" href="@Url.Action("Edit", "Grade", new { id = item.Id })">Редактиране</a>
+                                &nbsp;|&nbsp;
+                                <a class="linkHover" href="@Url.Action(
+                                "Delete",
+                                "Grade",
+                                new { id = item.Id })" onclick="return confirm('Изтриване на класа?')">Изтриване</a>
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+        </div>
+        <div class="col-sm-1"></div>
+    </div>
+</section>
