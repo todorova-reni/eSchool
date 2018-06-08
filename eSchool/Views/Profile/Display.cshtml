@@ -80,6 +80,13 @@
                         <a style="width: 100%;" class="btn btn-success btn-md active" asp-area="" asp-controller="Profile" asp-action="ExamResults">Резултати от изпити</a>
                     </div>
                 }
+
+                @if (@Model.Role == "Parent")
+                {
+                    <div class="btn-group-md">
+                        <a style="width: 100%;" class="btn btn-success btn-md active" asp-area="" asp-controller="Profile" asp-action="ChildExamResults">Резултати от изпити</a>
+                    </div>
+                }
             </div>
             <div class="col-sm-4"></div>
         </div>

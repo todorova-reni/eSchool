@@ -115,9 +115,9 @@ namespace eSchool.Controllers
                              Id = examRes.Id,
                              Student_Id = student.Id,
                              Student_FName = student.FirstName,
-                             Student_LName = student.FirstName,
+                             Student_LName = student.LastName,
+                             Exam_Res = examRes.Grade,
                              Course_Name = course.Name,
-                             Grade = examRes.Grade,
                              Created_At = examRes.Created_At
                          })
                         .ToList();

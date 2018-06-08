@@ -235,8 +235,6 @@ namespace eSchool.Controllers
                                FullName = string.Format("{0} {1}", user.FirstName, user.LastName)
                            };
 
-            //ViewBag.Teacher_Id = new SelectList(teachers, "Id", "*", selectedTeacher);
-
             ViewBag.Teacher_Id = new SelectList(teachers, "Id", "FullName", selectedTeacher);
         }
     }

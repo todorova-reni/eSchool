@@ -48,6 +48,8 @@ namespace eSchool.Controllers
             if (CheckAccess())
             {
                 PopulateGrades();
+                PopulateStudents();
+                PopulateParents();
                 return View();
             } else
             {
@@ -61,6 +63,8 @@ namespace eSchool.Controllers
 
             ViewData["ReturnUrl"] = ReturnUrl;
             PopulateGrades();
+            PopulateStudents();
+            PopulateParents();
             if (ModelState.IsValid)
             {
                 var userId = this.userManager.GetUserId(this.User);
@@ -133,6 +137,8 @@ namespace eSchool.Controllers
             {
 
                 var model = (from student in db.Student
+                             join Users in db.ApplicationUser on student.Stud_Email equals Users.Email
+                             join aspUsers in db.ApplicationUser on student.Parent_Email equals aspUsers.Email
                              join grade in db.Grade on student.Class_Id equals grade.Id
                              orderby grade.Grade_number, grade.Grade_letter ascending
                              select new ListStudentsViewModel
@@ -142,6 +148,10 @@ namespace eSchool.Controllers
                                  LastName = student.LastName,
                                  Stud_Email = student.Stud_Email,
                                  Parent_Email = student.Parent_Email,
+                                 User_Id = Users.Id,
+                                 Parent_Id = aspUsers.Id,
+                                 Parent_FName = aspUsers.FirstName,
+                                 Parent_LName = aspUsers.LastName,
                                  Grade_Number = grade.Grade_number,
                                  Grade_Letter = grade.Grade_letter,
                                  Active = student.Active
@@ -170,6 +180,8 @@ namespace eSchool.Controllers
                     return NotFound();
                 }
                 PopulateGrades();
+                PopulateStudents();
+                PopulateParents();
                 Student student = db.Student.Find(id);
                 EditStudentViewModel model = new EditStudentViewModel
                 {
@@ -193,6 +205,8 @@ namespace eSchool.Controllers
         {
             ViewData["ReturnUrl"] = ReturnUrl;
             PopulateGrades();
+            PopulateStudents();
+            PopulateParents();
             if (ModelState.IsValid)
             {
                 db.Entry(student).State = EntityState.Modified;
@@ -209,7 +223,6 @@ namespace eSchool.Controllers
                 Class_Id = student.Class_Id,
                 Active = student.Active
             };
-            //ViewBag.title_id = new SelectList(db.Titles, "title_id", "Titles", head.title_id);
             return View(model);
             
         }
@@ -239,10 +252,43 @@ namespace eSchool.Controllers
                                grade.Id,
                                GradeName = string.Format("{0} {1}", grade.Grade_number, grade.Grade_letter)
                            };
-
-            //ViewBag.Teacher_Id = new SelectList(teachers, "Id", "*", selectedTeacher);
-
+            
             ViewBag.Class_Id = new SelectList(grades, "Id", "GradeName", selectedGrade);
+        }
+
+        private void PopulateStudents(object selectedStudent = null)
+        {
+            string studentRole = "2";
+
+            var students = from user in db.ApplicationUser
+                           where user.Role.Equals(studentRole)
+                           && !(from s in db.Student
+                                select s.Stud_Email)
+                                .Contains(user.Email)
+                           orderby user.FirstName
+                           select new
+                           {
+                               user.Email,
+                               StudentInfo = string.Format("{0} {1} -  {2}", user.FirstName, user.LastName, user.Email)
+                           };
+
+            ViewBag.Stud_Email = new SelectList(students, "Email", "StudentInfo", selectedStudent);
+        }
+
+        private void PopulateParents(object selectedParent = null)
+        {
+            string parentRole = "3";
+
+            var parents = from user in db.ApplicationUser
+                           where user.Role.Equals(parentRole)
+                           orderby user.FirstName
+                           select new
+                           {
+                               user.Email,
+                               ParentInfo = string.Format("{0} {1} -  {2}", user.FirstName, user.LastName, user.Email)
+                           };
+
+            ViewBag.Parent_Email = new SelectList(parents, "Email", "ParentInfo", selectedParent);          
         }
     }
 }

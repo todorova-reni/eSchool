@@ -40,7 +40,10 @@
                                     <a class="linkHover" href="@Url.Action("View", "Student", new { id = item.Id })">@item.FirstName&nbsp;@item.LastName</a>
                                 </td>
                                 <td>@item.Grade_Number&nbsp;@item.Grade_Letter</td>
-                                <td>@item.Parent_Email</td>
+                                <td>
+                                    <a class="linkHover" href="@Url.Action("Display", "Profile", new { userId = item.Parent_Id })">@item.Parent_FName&nbsp;@item.Parent_LName</a>
+                                   &nbsp;&rarr;&nbsp; @item.Parent_Email
+                                </td>
                                 <td>@((item.Active == 0) ? "Не" : "Да")</td>
                                 <td>
                                     <a class="linkHover" href="@Url.Action("Add", "ExamResult", new { studId = item.Id, studName = item.FirstName +" "+item.LastName

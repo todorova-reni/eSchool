@@ -12,7 +12,11 @@ namespace eSchool.Models.ExamResultViewModel
 
         public string Student_LName { get; set; }
 
+        public string Parent_Email { get; set; }
+
         public string Course_Name { get; set; }
+
+        public int Exam_Res { get; set; }
 
         public int Grade { get; set; }
 
