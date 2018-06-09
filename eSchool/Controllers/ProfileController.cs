@@ -117,7 +117,7 @@ namespace eSchool.Controllers
                              Id = examRes.Id,
                              Student_Id = student.Id,
                              Student_FName = student.FirstName,
-                             Student_LName = student.FirstName,
+                             Student_LName = student.LastName,
                              Course_Name = course.Name,
                              Exam_Res = examRes.Grade,
                              Created_At = examRes.Created_At

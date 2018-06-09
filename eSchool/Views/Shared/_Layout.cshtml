@@ -55,26 +55,43 @@
                         <a asp-area="" asp-controller="Home" asp-action="About">За нас</a>
                     </li>
                     <li><a asp-area="" asp-controller="Home" asp-action="Contact">Контакти</a></li>
-                    <!--<li><a href="#"><i class="fa fa-fw fa-bar-chart-o"></i>Recent Works</a></li>-->
 
                     @if (SignInManager.IsSignedIn(User))
                     {
+                        var userId = this.UserManager.GetUserId(this.User);
+                        ApplicationUser user = UserManager.FindByIdAsync(userId).Result;
+                        @if (user.Role == "0" || user.Role == "1")
+                        {
+
+                            <li class="dropdown">
+                                <a asp-area="" asp-controller="Student" asp-action="List">Ученици</a>
+                            </li>
+                            <li class='dropdown'>
+                                <a asp-area="" asp-controller="Course" asp-action="List">Предмети</a>
+                            </li>
+                            <li><a asp-area="" asp-controller="Grade" asp-action="List">Оценки</a></li>
+
+
+                        }
+                        @if (user.Role == "2")
+                        {
+                            <li><a asp-area="" asp-controller="Profile" asp-action="ExamResults">Оценки</a></li>
+                        }
+                        @if (user.Role == "3")
+                        {
+                            <li><a asp-area="" asp-controller="Profile" asp-action="ChildExamResults">Оценки</a></li>
+                        }
                         <li class="dropdown">
-                            <a asp-area="" asp-controller="Profile" asp-action="Display">Моят профил<i class="icon-angle-down"></i></a>
+                            <a asp-area="" asp-controller="Profile" asp-action="Display"> Здравейте, @UserManager.GetUserName(User)!<i class="icon-angle-down"></i></a>
                         </li>
-                        <!--<li><a href="#">Книги</a></li>-->
                         <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="navbar-right">
                             <ul class="nav navbar-nav navbar-right">
-                                <li class="dropdown">
-                                    <a asp-area="" asp-controller="Manage" asp-action="Index" title="Manage">
-                                        Здравейте, @UserManager.GetUserName(User)!
-                                    </a>
-                                </li>
                                 <li class="dropdown">
                                     <button type="submit" class="btn btn-link navbar-btn navbar-link">Изход</button>
                                 </li>
                             </ul>
                         </form>
+
                     }
                     else
                     {
@@ -90,7 +107,6 @@
                         </li>
                     }
                 </ul>
-                <!--@await Html.PartialAsync("_LoginPartial")-->
             </div>
         </div>
     </header>
